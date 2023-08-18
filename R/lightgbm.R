@@ -95,14 +95,16 @@ train_lightgbm <- function(x, y, max_depth = -1, num_iterations = 100, learning_
       args$main[names(args$main) != "data"],
       list(data = quote(args$main$data))
     )
-
+  print("before call")
+  print(compacted)
   call <- parsnip::make_call(fun = "lgb.train", ns = "lightgbm", compacted)
-
+  print(call)
   if (quiet) {
     junk <- utils::capture.output(res <- rlang::eval_tidy(call, env = rlang::current_env()))
   } else {
     res <- rlang::eval_tidy(call, env = rlang::current_env())
   }
+  print("after call")
 
   res
 }
