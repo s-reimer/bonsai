@@ -91,7 +91,7 @@ train_lightgbm <- function(x, y, max_depth = -1, num_iterations = 100, learning_
 
   compacted <-
     c(
-      list(param = args$param),
+      list(params = args$param),
       args$main[names(args$main) != "data"],
       list(data = quote(args$main$data))
     )
